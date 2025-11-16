@@ -199,6 +199,38 @@ researchCards.forEach((card) => {
     });
 });
 
+// Highlight nav item based on click (desktop has 2 columns so scroll position is not used)
+(function () {
+    const navLinks = Array.from(document.querySelectorAll(".nav-item"));
+    if (!navLinks.length) return;
+
+    const setActive = (link) => {
+        navLinks.forEach((l) => l.classList.toggle("nav-active", l === link));
+    };
+
+    // Set initial active based on hash or first link
+    const initial = location.hash
+        ? navLinks.find((l) => l.getAttribute("href") === location.hash)
+        : navLinks[0];
+    if (initial) setActive(initial);
+
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            setActive(link);
+        });
+    });
+
+    const clearActiveOnScroll = () => {
+        navLinks.forEach((l) => l.classList.remove("nav-active"));
+    };
+    document.addEventListener("scroll", clearActiveOnScroll, { passive: true });
+
+    window.addEventListener("hashchange", () => {
+        const match = navLinks.find((l) => l.getAttribute("href") === location.hash);
+        if (match) setActive(match);
+    });
+})();
+
 // === Glass surface (vanilla port of React component) ===
 (function () {
     const defaults = {
