@@ -156,7 +156,7 @@ main {
 
 @media (max-width: 900px) {
     .page{
-        padding: 200px 30px;
+        padding: 130px 30px;
     }
     main {
     grid-template-columns: minmax(0, 1fr);
@@ -197,7 +197,7 @@ article[id] {
 @media (max-width: 900px) {
     section[id],
     article[id] {
-        scroll-margin-top: 150px;
+        scroll-margin-top: 130px;
     }
 }
 /* More card visibility per viewport */
